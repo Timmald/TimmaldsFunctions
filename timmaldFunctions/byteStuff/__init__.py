@@ -1,0 +1,1 @@
+from timmaldFunctions.byteStuff.fileReading import bytesFromPath
