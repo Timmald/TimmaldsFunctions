@@ -1,4 +1,11 @@
+import os
+
+
 def bytesFromPath(path:str):
-    with open(path,"rb") as f:
-        lines = f.read()
-        print(lines)
+    try:
+        with open(path,"rb") as f:
+            lines = f.read()
+        return lines
+    except IsADirectoryError:
+        for file in os.listdir(path):
+            return bytesFromPath(path+'/'+file)
