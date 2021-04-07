@@ -5,6 +5,15 @@ from PIL.Image import *
 
 
 def randShift(img: Image, extremeness:Union[int,float] = 50):
+    """
+    Uses PIL.Image eval(img, function) to apply a function to all pixels in the image, adjusting their color by a random amount
+
+    Args:
+        img: A PIL.Image Image object to be randomized
+        extremeness: An arbitrary number that will increase the extremeness of the randomization. Ideally from 1 to 100, but all numbers are accepted. If it is a float, it will be rounded. If it is negative, it will be made positive
+    Returns:
+        A PIL.Image Image object that has had the colors randomized
+    """
     def pixelRandShift(num: int):
         return num + random.randint(-round(abs(extremeness)),round(abs(extremeness)))
     if extremeness==0:
