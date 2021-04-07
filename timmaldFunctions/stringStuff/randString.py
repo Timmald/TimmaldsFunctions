@@ -9,18 +9,24 @@ def randChar() -> str:
     Returns
     ---------
 
-    char: :class: `str`
-        A string of length one containing a letter
+    A string of length one containing a letter
     """
-    letters='abcdefghijklmnopqrstuvwxyz'
+    letters = 'abcdefghijklmnopqrstuvwxyz'
     return random.choice(letters)
-def randString(len:Union[int,float]) -> str:
-    """Args:
-            len: Length of the string to generate. If it is a float, will be rounded
-       Returns:
-           A string of length len, filled with random characters
+
+
+def randString(len: Union[int, float]) -> str:
+    """Generates string of random characters of length `len`
+
+    Parameters
+    -----------
+    **len**(`Union[int,float]`):
+        The length of the random string to generate. If it is a float, it will be rounded.
+
+    ##Returns
+    A string of random characters of length len
     """
-    returnString=''
+    returnString = ''
     for i in range(int(round(len))):
-        returnString+=randChar()
+        returnString += randChar()
     return returnString

@@ -3,10 +3,15 @@ import os
 
 def bytesFromPath(path: str) -> bytes:
     """
-    Args:
-        path:A string representing the path of the file to get bytes from. If it is a path to a directory, will recur through the directory tree and return the bytes of the first file it finds.
-    Returns:
-        The bytes of a file indicated by the path
+    Gets the bytes of the file at `path`
+
+    Parameters
+    -----------
+    **path**(`str`): The path to the file. If it leads to a directory, it will recur through the directory until it finds a file, then return the bytes of that file
+
+    Returns
+    --------
+    The bytes of the file contained in `path`
     """
     try:
         with open(path, "rb") as f:

@@ -1,10 +1,14 @@
 import random
+import sys
 from typing import Union
 
-from PIL.Image import *
+from PIL.Image import Image
+
+print(sys.path)
+print('/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages' in sys.path)
 
 
-def randShift(img: Image, extremeness:Union[int,float] = 50):
+def randShift(img: Image, extremeness: Union[int, float] = 50):
     """
     Uses PIL.Image eval(img, function) to apply a function to all pixels in the image, adjusting their color by a random amount
 
@@ -14,15 +18,17 @@ def randShift(img: Image, extremeness:Union[int,float] = 50):
     Returns:
         A PIL.Image Image object that has had the colors randomized
     """
+
     def pixelRandShift(num: int):
-        return num + random.randint(-round(abs(extremeness)),round(abs(extremeness)))
-    if extremeness==0:
-        extremeness=1
+        return num + random.randint(-round(abs(extremeness)), round(abs(extremeness)))
+
+    if extremeness == 0:
+        extremeness = 1
     aspect = img.height / img.width
-    newWidth = round(abs(10/extremeness) * img.width)
+    newWidth = round(abs(10 / extremeness) * img.width)
     newHeight = round(newWidth * aspect)
-    if newHeight==float('inf') and newWidth==float('inf'):
-        newHeight,newWidth=img.height*2,img.width*2
+    if newHeight == float('inf') and newWidth == float('inf'):
+        newHeight, newWidth = img.height * 2, img.width * 2
     img = img.resize((int(newWidth), int(newHeight)))
     return eval(img, pixelRandShift)
-    #TODO: set up individual band randshift methods, make an option to separate extremeness from pixellation
+    # TODO: set up individual band randshift methods, make an option to separate extremeness from pixellation
